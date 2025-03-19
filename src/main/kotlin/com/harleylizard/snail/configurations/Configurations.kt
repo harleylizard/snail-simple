@@ -1,7 +1,5 @@
 package com.harleylizard.snail.configurations
 
-import com.harleylizard.snail.Dependency
-
 sealed interface Configurations {
 
     fun implementation(slug: String)

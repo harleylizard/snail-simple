@@ -1,13 +1,9 @@
 package com.harleylizard.snail.configurations
 
-import com.harleylizard.snail.Dependency
-import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.api.Project
 import soul.software.gladys.GladysClient
 
-class ForgeConfigurations(
-    private val version: String,
-    private val client: GladysClient,
-    private val dependencies: DependencyHandler) : Configurations {
+class ForgeConfigurations(private val client: GladysClient, private val project: Project) : Configurations {
 
     override fun implementation(slug: String) {
         TODO("Not yet implemented")

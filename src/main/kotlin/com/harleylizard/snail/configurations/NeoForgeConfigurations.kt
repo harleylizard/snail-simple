@@ -1,13 +1,13 @@
 package com.harleylizard.snail.configurations
 
 import com.harleylizard.snail.SnailSimple
-import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.api.Project
 import soul.software.gladys.GladysClient
 
-class NeoForgeConfigurations(
-    private val version: String,
-    private val client: GladysClient,
-    private val dependencies: DependencyHandler) : Configurations {
+class NeoForgeConfigurations(private val client: GladysClient, private val project: Project) : Configurations {
+    private val version get() = "todo"
+
+    private val dependencies = project.dependencies
 
     override fun implementation(slug: String) {
         SnailSimple.latestVersion(client, NEO_FORGE, version, slug)?.let {
