@@ -8,9 +8,10 @@ import soul.software.gladys.Gladys
 import soul.software.gladys.GladysClient
 import java.net.InetSocketAddress
 
-class Snail : Plugin<Project> {
+class SnailSimple : Plugin<Project> {
 
     override fun apply(target: Project) {
+
     }
 
     companion object {

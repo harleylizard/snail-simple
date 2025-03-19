@@ -11,6 +11,7 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
     maven("https://maven.soulsoftware.dev/releases")
+    maven("https://maven.msrandom.net/repository/root/")
 }
 
 dependencies {
@@ -18,6 +19,7 @@ dependencies {
     compileOnly("soul.software:gladys:1.4-SNAPSHOT")
 
     implementation("com.google.code.gson:gson:2.11.0")
+    implementation("fabric-loom:fabric-loom.gradle.plugin:1.9-SNAPSHOT")
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
@@ -31,7 +33,7 @@ gradlePlugin {
     plugins {
         create("snail") {
             id = "com.harleylizard.snail-simple"
-            implementationClass = "com.harleylizard.snail.simple.SnailSimple"
+            implementationClass = "com.harleylizard.snail.SnailSimple"
         }
     }
 }
