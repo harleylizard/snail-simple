@@ -10,31 +10,33 @@ class NeoForgeConfigurations(private val client: GladysClient, private val proje
     private val dependencies = project.dependencies
 
     override fun implementation(slug: String) {
-        SnailSimple.latestVersion(client, NEO_FORGE, version, slug)?.let {
+        getProject(slug)?.let {
             dependencies.add("implementation", it.artifact)
         }
     }
 
     override fun include(slug: String) {
-        SnailSimple.latestVersion(client, NEO_FORGE, version, slug)?.let {
+        getProject(slug)?.let {
             dependencies.add("include", it.artifact)
         }
     }
 
     override fun runtimeOnly(slug: String) {
-        SnailSimple.latestVersion(client, NEO_FORGE, version, slug)?.let {
+        getProject(slug)?.let {
             dependencies.add("runtimeOnly", it.artifact)
         }
     }
 
     override fun compileOnly(slug: String) {
-        SnailSimple.latestVersion(client, NEO_FORGE, version, slug)?.let {
+        getProject(slug)?.let {
             dependencies.add("compileOnly", it.artifact)
         }
     }
 
+    private fun getProject(slug: String) = SnailSimple.latestVersion(client, NEO_FORGE, version, slug)
+
     companion object {
-        private const val NEO_FORGE = "neoforge"
+        const val NEO_FORGE = "neoforge"
 
     }
 }

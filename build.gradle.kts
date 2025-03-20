@@ -10,8 +10,10 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()
     maven("https://maven.soulsoftware.dev/releases")
     maven("https://maven.msrandom.net/repository/root/")
+    maven("https://maven.msrandom.net/repository/cloche/")
 }
 
 dependencies {
@@ -20,6 +22,8 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.11.0")
     implementation("fabric-loom:fabric-loom.gradle.plugin:1.9-SNAPSHOT")
+
+    implementation("earth.terrarium:cloche:0.8.6")
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")

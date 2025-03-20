@@ -27,7 +27,7 @@ class SnailSimple : Plugin<Project> {
 
         fun latestVersion(client: GladysClient, loader: String, version: String, slug: String) = client.fromGladys(loader, version, slug)?.let { gson.fromJson(it, JsonObject::class.java) } ?.let {
             val latest = it.getAsJsonObject("latest")
-            Dependency(
+            SnailDependency(
                 latest.getAsJsonPrimitive("version").asString,
                 latest.getAsJsonPrimitive("maven").asString
             )

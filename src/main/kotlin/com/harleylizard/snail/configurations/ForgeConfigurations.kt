@@ -20,4 +20,9 @@ class ForgeConfigurations(private val client: GladysClient, private val project:
     override fun compileOnly(slug: String) {
         TODO("Not yet implemented")
     }
+
+    companion object {
+        const val FORGE = "forge"
+
+    }
 }

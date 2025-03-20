@@ -26,28 +26,32 @@ fun Project.forge(unit: Configurations.() -> Unit) {
     }
 }
 
+fun DependencyCollector.add(dependency: SnailDependency) {
+    add(dependency.artifact)
+}
+
 fun DependencyCollector.fabric(unit: DependencyConfiguration.() -> Unit) {
     SnailSimple.gladys.spawn {
-        DependencyConfiguration(it, this).also(unit)
+        DependencyConfiguration(FabricConfigurations.FABRIC, it, this).also(unit)
     }
 }
 
 fun DependencyCollector.forge(unit: DependencyConfiguration.() -> Unit) {
     SnailSimple.gladys.spawn {
-        DependencyConfiguration(it, this).also(unit)
+        DependencyConfiguration(ForgeConfigurations.FORGE, it, this).also(unit)
     }
 }
 
 fun DependencyCollector.neoForge(unit: DependencyConfiguration.() -> Unit) {
     SnailSimple.gladys.spawn {
-        DependencyConfiguration(it, this).also(unit)
+        DependencyConfiguration(NeoForgeConfigurations.NEO_FORGE, it, this).also(unit)
     }
 }
 
-class DependencyConfiguration(private val client: GladysClient, private val collector: DependencyCollector) {
+class DependencyConfiguration(private val loader: String, private val client: GladysClient, private val collector: DependencyCollector) {
 
-    fun dependencyOf(loader: String, version: String, slug: String) {
-        SnailSimple.latestVersion(client, loader, version, slug)
+    fun dependencyOf(version: String, slug: String) {
+        SnailSimple.latestVersion(client, loader, version, slug)?.let(collector::add)
     }
 }
 

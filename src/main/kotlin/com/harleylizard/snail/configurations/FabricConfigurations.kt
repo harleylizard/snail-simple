@@ -20,31 +20,33 @@ class FabricConfigurations(private val client: GladysClient, private val project
     }
 
     override fun implementation(slug: String) {
-        SnailSimple.latestVersion(client, FABRIC, version, slug)?.let {
+        getProject(slug)?.let {
             dependencies.add("modImplementation", it.artifact)
         }
     }
 
     override fun include(slug: String) {
-        SnailSimple.latestVersion(client, FABRIC, version, slug)?.let {
+        getProject(slug)?.let {
             dependencies.add("modInclude", it.artifact)
         }
     }
 
     override fun runtimeOnly(slug: String) {
-        SnailSimple.latestVersion(client, FABRIC, version, slug)?.let {
+        getProject(slug)?.let {
             dependencies.add("modRuntimeOnly", it.artifact)
         }
     }
 
     override fun compileOnly(slug: String) {
-        SnailSimple.latestVersion(client, FABRIC, version, slug)?.let {
+        getProject(slug)?.let {
             dependencies.add("modCompileOnly", it.artifact)
         }
     }
 
+    private fun getProject(slug: String) = SnailSimple.latestVersion(client, FABRIC, version, slug)
+
     companion object {
-        private const val FABRIC = "fabric"
+        const val FABRIC = "fabric"
 
         private val Project.minecraft get() = configurations.getByName(Constants.Configurations.MINECRAFT)
 
