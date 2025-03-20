@@ -14,6 +14,13 @@ import java.net.URI
 class SnailSimple : Plugin<Project> {
 
     override fun apply(target: Project) {
+        target.allprojects { project ->
+            project.repositories.let {
+                val central = it.mavenCentral()
+                it.exclusiveMaven(central, "https://cursemaven.com/", "curse.maven")
+                it.exclusiveMaven(central, "https://api.modrinth.com/maven", "maven.modrinth")
+            }
+        }
     }
 
     companion object {
